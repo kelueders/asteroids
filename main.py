@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -38,6 +39,12 @@ def main():
         # Iterate over all updatables in the group and update them
         for updatable in updatables:
             updatable.update(dt)
+
+        # Iterate over all asteroids in the group and check for collision
+        for asteroid in asteroids:
+            if asteroid.collision_check(player):
+                print("Game over!")
+                sys.exit()
         
         pygame.display.flip()
         # limit the framerate to 60 FPS
